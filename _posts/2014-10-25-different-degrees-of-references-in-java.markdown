@@ -1,8 +1,7 @@
 ---
-published: false
 layout: post
 title: Strong and Weak references in Java
-date: {}
+date: 2014-10-25 01:40:00 
 categories: Java
 ---
 
