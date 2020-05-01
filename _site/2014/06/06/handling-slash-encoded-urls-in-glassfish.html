@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Handling slash encoded URLs in Glassfish</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Notepad of Buchi Reddy</a></h1>
+            <!--a class="extra" href="/">Home</a-->
+          </div>
+
+          <h2>Handling slash encoded URLs in Glassfish</h2>
+<p class="meta">06 Jun 2014</p>
+
+<div class="post">
+<p>Today, I ran into a strange requirement where I needed to make the REST URIs with ‘%2F’ in path part work. However, I realized that the requests were not reaching the sevlet in my Glassfish application server which uses Grizzly for NIO and Apache as servlet container.  When I dig further, this is what I have learnt.</p>
+
+<p>Apache denies all URLs with %2F in the path part, for security reasons. So is Grizzly library when it receives a HTTP request.</p>
+
+<p>Apache provides AllowEncodedSlashes directive to turn on the slash encoded URLs which handles URLs containing ‘%2F’ (‘/’ character) and ‘%5C’ (‘' character). Alternatively, slash encoded URLs can also be enabled by passing the following property to Apache sever.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">-</span><span class="nc">Dorg</span><span class="o">.</span><span class="na">apache</span><span class="o">.</span><span class="na">tomcat</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">buf</span><span class="o">.</span><span class="na">UDecoder</span><span class="o">.</span><span class="na">ALLOW_ENCODED_SLASH</span><span class="o">=</span><span class="kc">true</span></code></pre></figure>
+
+<p>Similary, the following asadmin command can be run to enable slash encoded URLs on Glassfish.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">asadmin <span class="nb">set
+ </span>configs.config.server-config.network-config.protocols.protocol.http-listener-1.http.encoded-slash-enabled<span class="o">=</span><span class="nb">true</span></code></pre></figure>
+
+<p>Alternatively, pass the following property as jvm option to Glassfish.</p>
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="o">-</span><span class="nc">Dcom</span><span class="o">.</span><span class="na">sun</span><span class="o">.</span><span class="na">grizzly</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">buf</span><span class="o">.</span><span class="na">UDecoder</span><span class="o">.</span><span class="na">ALLOW_ENCODED_SLASH</span><span class="o">=</span><span class="kc">true</span></code></pre></figure>
+
+<p>So, if you have a Glassfish server using Apache servlet container with Grizzly NIO library, you have to enable slash encoded URLs at both the Apache and Grizzly level, for the request on slash encoded URI to make all the way upto servlet.</p>
+
+<p>For more info, check <a href="http://httpd.apache.org/docs/2.2/mod/core.html#allowencodedslashes">Apache AllowEncodedSlashes directive</a> and <a href="https://java.net/jira/browse/JERSEY-1456">Encoded slashes for Glassfish</a></p>
+
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Buchi Reddy B<br />
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/buchireddy">github.com/buchireddy</a><br />
+                <a href="https://twitter.com/buchireddy">twitter.com/buchireddy</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

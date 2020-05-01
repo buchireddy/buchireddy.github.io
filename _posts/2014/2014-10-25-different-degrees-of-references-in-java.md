@@ -2,7 +2,7 @@
 layout: post
 title: Strong and Weak references in Java
 date: 2014-10-25 01:40:00 
-categories: Java
+tags: [java]
 ---
 
 ## Different degrees of weakness

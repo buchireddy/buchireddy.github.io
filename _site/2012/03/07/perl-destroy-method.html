@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Perl’s DESTROY method</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Notepad of Buchi Reddy</a></h1>
+            <!--a class="extra" href="/">Home</a-->
+          </div>
+
+          <h2>Perl’s DESTROY method</h2>
+<p class="meta">07 Mar 2012</p>
+
+<div class="post">
+<p><strong>What is DESTROY for?</strong></p>
+
+<p>Just like some other programming languages provide automatic garbage collection for the programs, Perl also collects all the garbage from your program automatically. Perl uses a method called ‘DESTROY’[1] for this purpose and this method is called by Perl implicitly when an object goes out of scope after reference count is dropped to zero.</p>
+
+<p><strong>When should I use it?</strong></p>
+
+<p>In general you do not need to use this method explicitly but you might need to use this if you have recursive data structures that point to themselves. In those cases, Perl will not reclaim that data structure since the reference count for that data structure would be non-zero so you can use ‘<code class="language-plaintext highlighter-rouge">DESTROY' </code>to break the links manually.</p>
+
+<p><strong>Is it invoked always?</strong></p>
+
+<p>There are cases like program being aborted with interrupt signal, under which Perl will not invoke DESTROY method. So, if your program is using some resources which must be released before the program exits, make sure you catch the signals and take care of releasing the resources.</p>
+
+<p>Also, there is no guarantee about the time at which DESTROY will be invoked by Perl so we should not depend on DESTROY assuming that it will be invoked at an expected time. Perl provides no guarantees for when will DESTROY be called.</p>
+
+<p><strong>Difference between END and DESTROY?</strong></p>
+
+<p>END block is a piece of code which will be executed by Perl just before the interpreter exits and END is not related to object oriented features. There can be multiple END blocks in which case they are executed in the reverse order of declaration but there will be only one DESTROY for a class. If you override DESTROY in a subclass, you have to explicitly invoke super class’s DESTROY method.</p>
+
+<p><strong>References:</strong></p>
+
+<p>Here are some references if you would like to understand more about the DESTROY method in Perl.</p>
+
+<p><a href="http://perldoc.perl.org/perlobj.html#Destructors">http://perldoc.perl.org/perlobj.html#Destructors</a></p>
+
+<p><a href="http://perldoc.perl.org/perltoot.html#Destructors">http://perldoc.perl.org/perltoot.html#Destructors</a></p>
+
+<p><a href="http://docstore.mik.ua/orelly/perl4/prog/ch12_06.htm">http://docstore.mik.ua/orelly/perl4/prog/ch12_06.htm</a></p>
+
+<hr />
+
+<p><em>[1] All the methods which are implicitly called by Perl will be in upper</em></p>
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Buchi Reddy B<br />
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/buchireddy">github.com/buchireddy</a><br />
+                <a href="https://twitter.com/buchireddy">twitter.com/buchireddy</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

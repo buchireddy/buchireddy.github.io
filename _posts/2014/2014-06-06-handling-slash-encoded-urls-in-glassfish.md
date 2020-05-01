@@ -2,7 +2,7 @@
 layout: post
 title:  "Handling slash encoded URLs in Glassfish"
 date:   2014-06-06 10:11:34
-categories: Glassfish REST Grizzly Apache
+tags: [glassfish rest grizzly apache]
 ---
 Today, I ran into a strange requirement where I needed to make the REST URIs with '%2F' in path part work. However, I realized that the requests were not reaching the sevlet in my Glassfish application server which uses Grizzly for NIO and Apache as servlet container.  When I dig further, this is what I have learnt.
 

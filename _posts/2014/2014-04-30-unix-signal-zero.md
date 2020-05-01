@@ -2,7 +2,7 @@
 layout: post
 title:  "UNIX SIGNAL '0'"
 date:   2014-04-30 14:54:34
-categories: UNIX SIGNAL kill 
+tags: [unix signal kill]
 ---
 
 In UNIX, signal `0` can be used with `kill` command to check if a process exists and accepts signals from the current user. However, no signal is sent to the process when `kill -0` is run. This command could be used as an alternative to parsing `ps` output for checking the process existence. Since it’s not shown in most of the help pages or signal list via `kill -l`, it may not be known to some users.

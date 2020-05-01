@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>UNIX SIGNAL '0'</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Notepad of Buchi Reddy</a></h1>
+            <!--a class="extra" href="/">Home</a-->
+          </div>
+
+          <h2>UNIX SIGNAL '0'</h2>
+<p class="meta">30 Apr 2014</p>
+
+<div class="post">
+<p>In UNIX, signal <code class="language-plaintext highlighter-rouge">0</code> can be used with <code class="language-plaintext highlighter-rouge">kill</code> command to check if a process exists and accepts signals from the current user. However, no signal is sent to the process when <code class="language-plaintext highlighter-rouge">kill -0</code> is run. This command could be used as an alternative to parsing <code class="language-plaintext highlighter-rouge">ps</code> output for checking the process existence. Since it’s not shown in most of the help pages or signal list via <code class="language-plaintext highlighter-rouge">kill -l</code>, it may not be known to some users.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">kill</span> <span class="nt">-l</span>
+HUP INT QUIT ILL TRAP ABRT EMT FPE KILL BUS SEGV SYS PIPE ALRM TERM URG STOP TSTP CONT CHLD TTIN TTOU IO XCPU XFSZ VTALRM PROF WINCH INFO USR1 USR2 </code></pre></figure>
+
+<p>Examples:
+You can use the following code to check if a process exists.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Check if a process with given PID exists.</span>
+<span class="nb">kill</span> <span class="nt">-0</span> <span class="nv">$pid</span><span class="p">;</span> <span class="nb">echo</span> <span class="s2">"Exit status: </span><span class="nv">$?</span><span class="s2">”</span></code></pre></figure>
+
+<p>The exit status of this command will be ‘0’ if the process with given pid exists, ‘1’ otherwise. <code class="language-plaintext highlighter-rouge">errno</code> will be set appropriately if the command fails.</p>
+
+<p>If you are unsure if a process is still running but you want to kill it if it runs, then you can use the below command.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c"># Kill if the process with given PID exists.</span>
+<span class="nb">kill</span> <span class="nt">-0</span> <span class="nv">$pid</span> <span class="o">&amp;&amp;</span> <span class="nb">kill</span> <span class="nv">$pid</span></code></pre></figure>
+
+<p>For more info, check <a href="http://linux.die.net/man/2/kill">kill(2)</a></p>
+
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Buchi Reddy B<br />
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/buchireddy">github.com/buchireddy</a><br />
+                <a href="https://twitter.com/buchireddy">twitter.com/buchireddy</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

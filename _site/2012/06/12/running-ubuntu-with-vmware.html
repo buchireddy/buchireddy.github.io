@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Running Ubuntu with VMWare on Windows 7</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Notepad of Buchi Reddy</a></h1>
+            <!--a class="extra" href="/">Home</a-->
+          </div>
+
+          <h2>Running Ubuntu with VMWare on Windows 7</h2>
+<p class="meta">12 Jun 2012</p>
+
+<div class="post">
+<p>I always wanted to run some Linux OS on my laptop but could not install one. So, I though to running Linux as a virtual machine and explored different options recently.</p>
+
+<p>It wasn’t a tough job to choose a decently good software to run virutal machines since it turns out that there are not too many products available (at least the so called famous ones).</p>
+
+<p><strong>Different options for running VMs?</strong></p>
+
+<p>There are different options like using VMWare, Virtualbox, Prallells and Sphere for running virtual machines. I have understood that both the VMWare and Virtualbox are the most widely used for this purpose and I have picked VMWare based on some of the references given below.</p>
+
+<p>I just wanted to give some details on how one can quickly launch a Linux virtual machine from Windows7.</p>
+
+<p><strong>Steps for running a virtual machine using VMWare:</strong></p>
+
+<p>1. Download and install latest version of VMPlayer for Windows.</p>
+
+<p>You can download it from <a href="http://www.vmware.com/products/player/faqs.html">here</a>.  This is pretty straight forward and should be done in few minutes.</p>
+
+<p>2. Download the required VMWare image for the guest operating system you want to run.</p>
+
+<p>For example, <a href="http://www.trendsigma.net/vmware/" title="http://www.trendsigma.net/vmware/">http://www.trendsigma.net/vmware/</a> provides images of bunch of Linux operating systems and you can download the ones you want.</p>
+
+<p>3. Configure higher memory for the guest OS in vmx file you find in the downloaded zip (you can edit the vmx file with the text editor). Please note that you can skip this step and configure the memory later also.</p>
+
+<p>Default values will be generally 512M which might cause slowness (due to excessive paging) to your guest OS if you are using it extensively.</p>
+
+<p>4. Launch the VMPlayer installed in step 1 and select to open an existing virtual machine from the options.</p>
+
+<p>There, you need to pick up the vmx file (that you modifed in the previous step) and paly the virtual machine.</p>
+
+<p>You should now see a complete Linux OS running as part of the VMPlayer window.</p>
+
+<p><em>If you need any further assistance for this, you can either google for it (there is lot of community support) or reach out to me at buchi dot 22 dot aug at gmail dot com</em></p>
+
+<hr />
+<p><strong>References:</strong></p>
+
+<p>Here are some references for comparison of different VM players.</p>
+
+<p><a href="http://marsbox.com/blog/reviews/vmware-vs-virtualbox/">http://marsbox.com/blog/reviews/vmware-vs-virtualbox/</a></p>
+
+<p><a href="https://www.virtualbox.org/wiki/VBox_vs_Others">https://www.virtualbox.org/wiki/VBox_vs_Others</a></p>
+
+<p><a href="http://tidbits.com/article/12498">http://tidbits.com/article/12498</a></p>
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Buchi Reddy B<br />
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/buchireddy">github.com/buchireddy</a><br />
+                <a href="https://twitter.com/buchireddy">twitter.com/buchireddy</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Strong and Weak references in Java</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Notepad of Buchi Reddy</a></h1>
+            <!--a class="extra" href="/">Home</a-->
+          </div>
+
+          <h2>Strong and Weak references in Java</h2>
+<p class="meta">24 Oct 2014</p>
+
+<div class="post">
+<h2 id="different-degrees-of-weakness">Different degrees of weakness</h2>
+
+<p><a href="http://weblogs.java.net/blog/enicholas/archive/2006/05/understanding_w.html">Here</a> is a very good article about different degrees of weakness of Java reference types. As the author says, many people doesn’t even know about these but I think <code class="language-plaintext highlighter-rouge">WeakReference</code> is pretty useful in many of the applications so it is really important to understand these.</p>
+
+<p>Again, I made some notes from the above mentioned article:</p>
+
+<p>There are actually four different degrees of reference strength in Java: strong, soft, weak, and phantom, in order from strongest to weakest.</p>
+
+<h3 id="strong-reference">Strong reference</h3>
+<p>If an object is reachable via a chain of strong references (strongly reachable), it is not eligible for garbage collection.</p>
+
+<h3 id="weak-reference">Weak reference</h3>
+
+<p>A weak reference is a reference that isn’t strong enough to force an object to remain in memory.</p>
+
+<h3 id="soft-reference">Soft reference</h3>
+
+<p>A soft reference is exactly like a weak reference, except that it is less eager to throw away the object to which it refers. An object which is only weakly reachable (the strongest references to it are WeakReferences) will be discarded at the next garbage collection cycle, but an object which is softly reachable will generally stick around for a while.</p>
+
+<h3 id="reference-queues">Reference queues</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">ReferenceQueue</code> class makes it easy to keep track of dead references. If you pass a <code class="language-plaintext highlighter-rouge">ReferenceQueue</code> into a weak reference’s constructor, the reference object will be automatically inserted into the reference queue when the object to which it pointed becomes garbage.</p>
+
+<h3 id="phantom-references">Phantom references</h3>
+<p>A phantom reference is quite different than either <code class="language-plaintext highlighter-rouge">SoftReference</code> or <code class="language-plaintext highlighter-rouge">WeakReference</code>. Its grip on its object is so tenuous that you can’t even retrieve the object – its get() method always returns null. They allow you to determine exactly when an object was removed from memory. They are in fact the only way to determine that.</p>
+
+<p>PhantomReferences avoid a fundamental problem with finalization: finalize() methods can “resurrect” objects by creating new strong references to them. With PhantomReference, this situation is impossible – when a PhantomReference is enqueued, there is absolutely no way to get a pointer to the now-dead object. Because PhantomReference cannot be used to resurrect an object, the object can be instantly cleaned up during the first garbage collection cycle in which it is found to be phantomly reachable.</p>
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Buchi Reddy B<br />
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://github.com/buchireddy">github.com/buchireddy</a><br />
+                <a href="https://twitter.com/buchireddy">twitter.com/buchireddy</a><br />
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>

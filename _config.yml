@@ -1,4 +1,5 @@
 title: Notepad of Buchi Reddy 
-markdown: redcarpet
-highlighter: pygments
-theme: jekyll-theme-modernist
+markdown: kramdown
+highlighter: rouge
+
+theme: jekyll-theme-midnight
