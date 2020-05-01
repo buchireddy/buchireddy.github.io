@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Object Initialization in Java</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="site">
+          <div class="header">
+            <h1 class="title"><a href="/">Notepad of Buchi Reddy</a></h1>
+            <!--a class="extra" href="/">Home</a-->
+          </div>
+
+          <h2>Object Initialization in Java</h2>
+<p class="meta">23 Oct 2014</p>
+
+<div class="post">
+<p>I stumbled upon <a href="http://www.artima.com/designtechniques/initializationP.html">this</a> Artima article about “Object initialization in Java” today. This is a detailer about Java’s object initialization and here are some important points directly taken from the article. I am keeping them here so that I can refer to them later or someone else who thinks that article is TL;TR can quickly skim through these points.</p>
+
+<ul>
+  <li>
+    <p>The Java language has three mechanisms dedicated to ensuring proper initialization of objects: <em>instance initializers</em> (also called <em>instance initialization blocks</em>), <em>instance variable initializers</em>, and <em>constructors</em>.</p>
+  </li>
+  <li>
+    <p>Like methods, you can give access specifiers to constructors, but unlike methods, constructors with public, protected, or package access are not inherited by subclasses. Also, instead of determining the ability to invoke a method, the access level of a constructor determines the ability to instantiate an object.</p>
+  </li>
+  <li>
+    <p>You can have methods in a Java class with the same name as the class itself.</p>
+  </li>
+  <li>
+    <p>When you compile a class, the Java compiler creates an instance initialization method for each constructor you declare in the source code of the class. Although the constructor is not a method, the instance initialization method is. It has a name, <code class="language-plaintext highlighter-rouge">\&lt;init\&gt;</code>, a return type, void, and a set of parameters that match the parameters of the constructor from which it was generated.</p>
+  </li>
+  <li>Into each <code class="language-plaintext highlighter-rouge">\&lt;init\&gt;</code> method, the compiler can place three kinds of code:
+    <ol>
+      <li>An invocation of another constructor</li>
+      <li>Instance variable initializers</li>
+      <li>The constructor body</li>
+    </ol>
+  </li>
+  <li>
+    <p>For every class except Object, the first thing each <code class="language-plaintext highlighter-rouge">\&lt;init\&gt;</code> method will do is invoke another constructor.</p>
+  </li>
+  <li>
+    <p>Often, the code of an instance initialization method does more than the code defined in the body of its corresponding constructor. The compiler also potentially adds code for any initializers and an invocation of the superclass’s constructor.</p>
+  </li>
+  <li>
+    <p>Instance initializers can’t make <em>forward references</em>.</p>
+  </li>
+  <li>
+    <p>When an object is created, the Java virtual machine allocates enough space for all the object’s instance variables, which include all fields defined in the object’s class and in all its superclasses.</p>
+  </li>
+  <li>
+    <p>Every Java virtual machine must have the capability to determine information about its class, given only a reference to an object. This is needed for many reasons, including type-safe casting and the instanceof operator.</p>
+  </li>
+  <li>
+    <p>You can’t have both <code class="language-plaintext highlighter-rouge">this()</code> and <code class="language-plaintext highlighter-rouge">super()</code> in the same constructor. You can only have one or the other (or neither, if the direct superclass includes a no-arg constructor). If a constructor includes a <code class="language-plaintext highlighter-rouge">this()</code> or <code class="language-plaintext highlighter-rouge">super()</code> invocation, it must be the first statement in the constructor.</p>
+  </li>
+  <li>
+    <p>Although <code class="language-plaintext highlighter-rouge">\&lt;init\&gt;</code> methods are called in an order starting from the object’s class and proceeding up the inheritance path to class Object, instance variables are initialized in the reverse order. Instance variables are initialized in an order starting from class Object and proceeding down the inheritance path to the object’s class.</p>
+  </li>
+  <li>You should be careful when you invoke methods from initializers or constructors, because you can end up using instance variables before they’ve been properly initialized.</li>
+</ul>
+
+
+</div>
+
+
+          <div class="footer">
+            <div class="contact">
+              <p>
+                Buchi Reddy B<br />
+              </p>
+            </div>
+            <div class="contact">
+              <p>
+                <a href="https://twitter.com/buchireddy">Twitter</a>
+                <a href="https://www.linkedin.com/in/buchireddy/">LinkedIn</a><br/>
+              </p>
+            </div>
+          </div>
+        </div>
+
+    </body>
+</html>
