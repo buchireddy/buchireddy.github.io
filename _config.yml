@@ -1,3 +1,5 @@
 name: Notepad of Buchi Reddy 
 markdown: redcarpet
 highlighter: pygments
+
+theme: jekyll-theme-midnight
