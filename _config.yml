@@ -1,5 +1,4 @@
-name: Notepad of Buchi Reddy 
+title: Notepad of Buchi Reddy 
 markdown: redcarpet
 highlighter: pygments
-
-theme: jekyll-theme-midnight
+theme: jekyll-theme-modernist
